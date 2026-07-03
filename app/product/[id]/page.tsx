@@ -1,6 +1,7 @@
 import LikeButton from './LikeButton'
 import ServerOnlyPart from './ServerOnlyPart'
 import { getProduct } from './data'
+import { logLike } from './actions'
 
 export default async function ProductPage({
   params,
@@ -15,7 +16,11 @@ export default async function ProductPage({
       <h1>{product.name}</h1>
       <p>${product.price}</p>
       <p>{product.description}</p>
-      <LikeButton initialLikes={product.likes}>
+      <LikeButton
+        initialLikes={product.likes}
+        createdAt={new Date()}
+        onLike={logLike}
+      >
         <ServerOnlyPart />
       </LikeButton>
     </main>
